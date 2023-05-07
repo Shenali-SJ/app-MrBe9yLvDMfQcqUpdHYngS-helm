@@ -9,13 +9,6 @@ spec:
   - host: '{{.Values.hostName}}'
     http:
       paths:
-      - path: /{{.Values.microservices.CartService.serviceName}}(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: '{{.Values.microservices.CartService.serviceName}}'
-            port:
-              name: http
       - path: /{{.Values.microservices.OrderService.serviceName}}(/|$)(.*)
         pathType: Prefix
         backend:
@@ -28,5 +21,12 @@ spec:
         backend:
           service:
             name: '{{.Values.microservices.UserService.serviceName}}'
+            port:
+              name: http
+      - path: /{{.Values.microservices.CartService.serviceName}}(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: '{{.Values.microservices.CartService.serviceName}}'
             port:
               name: http
